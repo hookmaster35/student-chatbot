@@ -28,7 +28,7 @@ if prompt := st.chat_input("What's on your mind?"):
         st.stop()
     
     # Configure Gemini
-    genai.configure(api_key=st.secrets)
+    genai.configure(api_key=api_key)
     model = genai.GenerativeModel('gemini-3-flash-preview')
 
     # Add user message to history
