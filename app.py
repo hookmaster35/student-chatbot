@@ -43,7 +43,7 @@ if prompt := st.chat_input("What's on your mind?"):
         
         try:
             # Simple context for the bot
-            system_instruction = "You are a helpful university student assistant. Keep answers concise and friendly."
+            system_instruction = "You are a helpful online student assistant. Keep answers concise and friendly. The information of the campus/university is ZDSPGC Tigbao located in Tigbao, Tigbao, Zamboanga del Sur. Also remember that you are made as a group project to be submitted to sir Dave Tapayan"
             response = model.generate_content(system_instruction + "\nUser: " + prompt)
             full_response = response.text
             
