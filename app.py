@@ -4,12 +4,17 @@ import google.generativeai as genai
 # 1. Page Config
 st.set_page_config(page_title="Student Helper Bot", page_icon="🎓")
 
-# 2. Sidebar for API Key (Secure way)
+# 2. Sidebar for API Key + Clear Button
 st.sidebar.title("⚙️ Settings")
 api_key = st.sidebar.text_input("Enter Google API Key", type="password")
 
+# CLEAR BUTTON - Add this!
+if st.sidebar.button("Clear Chat", type="secondary"):
+    st.session_state.messages = []
+    st.rerun()  # Refresh the app to show empty chat
+
 # 3. Main Title
-st.title("Student Assistant Chatbot")
+st.title("🎓 Student Assistant Chatbot")
 st.write("Ask me about assignments, study tips, or campus info!")
 
 # 4. Initialize Chat History
@@ -42,8 +47,9 @@ if prompt := st.chat_input("What's on your mind?"):
         full_response = ""
         
         try:
-            # Simple context for the bot
-            system_instruction = "You are a helpful online student assistant. Keep answers concise and friendly. The information of the campus/university is ZDSPGC Tigbao located in Tigbao, Tigbao, Zamboanga del Sur. Also remember that you are made as a group project of Group 4 to be submitted to sir Dave Tapayan"
+            # Custom context for your project 🎓
+            system_instruction = "You are a helpful online student assistant. Keep answers concise and friendly. The information of the campus/university is ZDSPGC Tigbao located in Tigbao, Tigbao, Zamboanga del Sur. Also remember that you are made as a group project of Group 4 to be submitted to sir Dave Tapayan."
+            
             response = model.generate_content(system_instruction + "\nUser: " + prompt)
             full_response = response.text
             
